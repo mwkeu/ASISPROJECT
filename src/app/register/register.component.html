@@ -1,0 +1,36 @@
+<div class="register-form">
+  <h2 class="ttt">Register</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="email">Email</label>
+      <input id="email" formControlName="email" type="email" placeholder="Enter your email" />
+      <small *ngIf="submitted && registerForm.controls['email'].invalid">
+        <span *ngIf="registerForm.controls['email'].errors?.['required']">Email is required</span>
+        <span *ngIf="registerForm.controls['email'].errors?.['email']">Invalid email</span>
+      </small>
+    </div>
+
+    <div>
+      <label for="password">Password</label>
+      <input id="password" formControlName="password" type="password" placeholder="Enter your password" />
+      <small *ngIf="submitted && registerForm.controls['password'].invalid">
+        <span *ngIf="registerForm.controls['password'].errors?.['required']">Password is required</span>
+        <span *ngIf="registerForm.controls['password'].errors?.['minlength']">Password must be at least 6 characters</span>
+      </small>
+    </div>
+
+    <div>
+      <label for="confirmPassword">Confirm Password</label>
+      <input id="confirmPassword" formControlName="confirmPassword" type="password" placeholder="Confirm your password" />
+      <small *ngIf="submitted && registerForm.controls['confirmPassword'].invalid">
+        <span *ngIf="registerForm.controls['confirmPassword'].errors?.['required']">Confirm Password is required</span>
+        <span *ngIf="registerForm.controls['confirmPassword'].errors?.['mismatch']">Passwords do not match</span>
+      </small>
+    </div>
+
+    <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+    <button type="submit">Register</button>
+  </form>
+  <p class="keke">Already have an account? <a [routerLink]="['/login']">Login here</a></p>
+</div>
